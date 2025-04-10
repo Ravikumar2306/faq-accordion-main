@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->  
+  <title>Frontend Mentor | FAQ accordion</title>
+  <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+
+  <main>
+
+    <div class="card">
+      
+      <div class="title">
+        <img src="./assets/images/icon-star.svg" alt="">
+        <h1 class="faq">FAQs</h1>
+      </div>
+      
+      <article class="faq-item">
+        <header class="faq-question">
+          <h4>What is Frontend Mentor, and how will it help me?</h4>
+          <button type="button" class="toggle-icon"><img src="./assets/images/icon-plus.svg" alt=""></button>
+        </header>
+        <section class="faq-answer">
+          <p>Frontend Mentor offers realistic coding challenges to help developers improve their 
+            frontend coding skills with projects in HTML, CSS, and JavaScript. It's suitable for 
+            all levels and ideal for portfolio building.</p>
+        </section>
+      </article>
+
+      <article class="faq-item">
+        <header class="faq-question">
+          <h4>Is Frontend Mentor free?</h4>
+          <button type="button" class="toggle-icon"><img src="./assets/images/icon-plus.svg" alt=""></button>
+        </header>
+        <section class="faq-answer">
+          <p>Yes, Frontend Mentor offers both free and premium coding challenges, with the free 
+            option providing access to a range of projects suitable for all skill levels.</p>
+        </section>
+      </article>
+
+      <article class="faq-item">
+        <header class="faq-question">
+          <h4>Can I use Frontend Mentor projects in my portfolio?</h4>
+          <button type="button" class="toggle-icon"><img src="./assets/images/icon-plus.svg" alt=""></button>
+        </header>
+        <section class="faq-answer">
+          <p>Yes, you can use projects completed on Frontend Mentor in your portfolio. It's an excellent
+            way to showcase your skills to potential employers!</p>
+        </section>
+      </article>
+
+      <article class="faq-item">
+        <header class="faq-question">
+          <h4>How can I get help if I'm stuck on a Frontend Mentor challenge?</h4>
+          <button type="button" class="toggle-icon"><img src="./assets/images/icon-plus.svg" alt=""></button>
+        </header>
+        <section class="faq-answer">
+          <p>The best place to get help is inside Frontend Mentor's Discord community. There's a help 
+            channel where you can ask questions and seek support from other community members.</p>
+        </section>
+      </article>
+    </div>
+    
+  </main>
+
+</body>
+
+<script>
+  const faqItems = document.querySelectorAll('.faq-item');
+
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    const toggleBtn = item.querySelector('.toggle-icon');
+    const iconImg = toggleBtn.querySelector('img');
+    const answer = item.querySelector('.faq-answer');
+
+    // Start collapsed
+    answer.style.maxHeight = '0px';
+    answer.style.overflow = 'hidden';
+    answer.style.transition = 'max-height 0.4s ease';
+
+    question.addEventListener('click', () => {
+      const isOpen = answer.style.maxHeight !== '0px';
+
+      // Close all answers
+      faqItems.forEach(otherItem => {
+        const otherAnswer = otherItem.querySelector('.faq-answer');
+        const otherIcon = otherItem.querySelector('.toggle-icon img');
+        otherAnswer.style.maxHeight = '0px';
+        otherIcon.src = './assets/images/icon-plus.svg';
+      });
+
+      // Toggle current answer
+      if (!isOpen) {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        iconImg.src = './assets/images/icon-minus.svg';
+      }
+    });
+  });
+</script>
+
+</html>
